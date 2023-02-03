@@ -4,6 +4,8 @@ import { galleryItems } from './gallery-items.js';
 
 const galleryContainer = document.querySelector('.gallery');
 
+// Add images to gallery
+
 function addImgToGallery(galleryItems) {
   return galleryItems.map(({preview, original, description}) => {
     return `
@@ -13,7 +15,8 @@ function addImgToGallery(galleryItems) {
           class="gallery__image" 
           src="${preview}"
           data-source="${original}" 
-          alt="${description}">
+          alt="${description}"
+        >
       </a>
     </div>
     `;
@@ -24,23 +27,40 @@ const cardsGallery = addImgToGallery(galleryItems);
 
 galleryContainer.insertAdjacentHTML('beforeend', cardsGallery);
 
-galleryContainer.addEventListener('click', onContainerGallery)
+// Open original image
+
+galleryContainer.addEventListener('click', onContainerGallery);
 
 function onContainerGallery(event) {
+
   event.preventDefault();
+
   const isGalleryImageEl = event.target.classList.contains('gallery__image');
   if(!isGalleryImageEl) {
     return;
   }
+
   openOriginalImg(event.target.dataset.source);
-  console.log(event.target.dataset.source);
+
 }
 
-function openOriginalImg(bigImgGallery) {
+function openOriginalImg(largeImgGallery) {
 
   const instance = basicLightbox.create(`
-  <img src="${bigImgGallery}">
-  `)
+    <img src="${largeImgGallery}">
+  `);
   
-  instance.show()
+  instance.show();
+
+  // Close original image
+
+  window.addEventListener('keydown', (event) => {
+    if(event.code === "Escape") {
+      instance.close();
+    }
+  });
+
 }
+
+
+
