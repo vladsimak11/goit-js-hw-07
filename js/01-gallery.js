@@ -36,31 +36,41 @@ function onContainerGallery(event) {
   event.preventDefault();
 
   const isGalleryImageEl = event.target.classList.contains('gallery__image');
+
   if(!isGalleryImageEl) {
     return;
   }
 
-  openOriginalImg(event.target.dataset.source);
-
-}
-
-function openOriginalImg(largeImgGallery) {
-
-  const instance = basicLightbox.create(`
-    <img src="${largeImgGallery}">
-  `);
-  
-  instance.show();
-
-  // Close original image
-
-  window.addEventListener('keydown', (event) => {
+  const closeOriginalImg = event => {
+    console.log(event.target);
     if(event.code === "Escape") {
       instance.close();
     }
-  });
+  };
 
-}
+  const instance = basicLightbox.create(`
+    <img src="${event.target.dataset.source}">`, 
+    {
+      onShow: instance => {
+        document.addEventListener('keydown', closeOriginalImg);
+      }
+    },
+  
+    {
+      onClose: instance => {
+        document.removeEventListener('keydown', closeOriginalImg);
+      }
+    }
+    );
+  
+    instance.show();
+  };
+  
+
+
+
+
+
 
 
 

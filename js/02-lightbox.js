@@ -23,31 +23,38 @@ const cardsGallery = addImgToGallery(galleryItems);
 
 galleryContainer.insertAdjacentHTML('beforeend', cardsGallery);
 
+let lightbox = new SimpleLightbox('.gallery__item', {
+  captionsData: 'alt',
+  captionPosition: 'bottom',
+  captionDelay: 250,
+});
+
+
 // Open original image
 
-galleryContainer.addEventListener('click', onContainerGallery);
+// galleryContainer.addEventListener('click', onContainerGallery);
 
-function onContainerGallery(event) {
+// function onContainerGallery(event) {
 
-  event.preventDefault();
+//   event.preventDefault();
 
-  const isGalleryImageEl = event.target.classList.contains('gallery__image');
+//   const isGalleryImageEl = event.target.classList.contains('gallery__image');
 
-  if(!isGalleryImageEl) {
-    return;
-  }
+//   if(!isGalleryImageEl) {
+//     return;
+//   }
 
-  openOriginalImg();
+//   openOriginalImg();
 
-}
+// }
 
-function openOriginalImg() {
+// function openOriginalImg() {
+//   let lightbox = new SimpleLightbox('.gallery__item', {
+//     captionsData: 'alt',
+//     captionPosition: 'bottom',
+//     captionDelay: 250,
+//   });
 
-  let lightbox = new SimpleLightbox('.gallery__item', {
-    captionsData: 'alt',
-    captionPosition: 'bottom',
-    captionDelay: 250,
-  });
+// }
 
-}
-
+// openOriginalImg();
