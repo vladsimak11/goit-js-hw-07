@@ -40,10 +40,6 @@ function onContainerGallery(event) {
     return;
   }
 
-  const handleClick = (event) => {
-    console.log(event);
-  };
-
   const closeOriginalImg = event => {
     if(event.code === "Escape") {
       instance.close();
@@ -55,12 +51,10 @@ function onContainerGallery(event) {
     {
       onShow: instance => {
         document.addEventListener('keydown', closeOriginalImg);
-        document.addEventListener('click', handleClick);
       },
   
       onClose: instance => {
         document.removeEventListener('keydown', closeOriginalImg);
-        document.removeEventListener('click', handleClick);
       }
     }
   );
