@@ -32,9 +32,8 @@ galleryContainer.insertAdjacentHTML('beforeend', cardsGallery);
 galleryContainer.addEventListener('click', onContainerGallery);
 
 function onContainerGallery(event) {
-
+ 
   event.preventDefault();
-
   const isGalleryImageEl = event.target.classList.contains('gallery__image');
 
   if(!isGalleryImageEl) {
@@ -42,7 +41,6 @@ function onContainerGallery(event) {
   }
 
   const closeOriginalImg = event => {
-    console.log(event.target);
     if(event.code === "Escape") {
       instance.close();
     }
